@@ -1,0 +1,48 @@
+LocalQuizEngine Authenticity Information
+* * *
+Why This "AUTHENTICITY.TXT" File Exists:
+This document exists to help users identify the
+official project and verification process.
+
+The presence of this file alone does not prove
+authenticity!
+
+Authenticity should be verified using the
+published project key and release signature.
+* * *
+Project:
+LocalQuizEngine
+
+Application Description:
+Offline quiz creation and study tool.
+
+Official Repository:
+https://github.com/daemon-forks/local-quiz-engine
+
+Project Signing Fingerprint:
+F39DC77A91E5E60F93AA599A1B2F69E53321ACC4
+* * *
+Release Verification Policy:
+
+Official releases may include:
+- Release ZIP
+- SHA-256 checksum
+- Detached signature (.sig)
+
+Users should verify release signatures using the
+published LocalQuizEngine public key.
+
+If a signature verification fails, the release
+should not be considered authentic.
+
+Authentic releases are only those signed by the
+LocalQuizEngine project signing key.
+* * *
+Notes:
+
+LocalQuizEngine is distributed as local files and
+is designed to operate entirely offline.
+
+This document is informational only.
+Authenticity is determined by successful
+cryptographic verification.

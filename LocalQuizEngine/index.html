@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<!--
+LocalQuizEngine
+Version 1.0
+
+Created by daemon-forks
+
+Developed using HTML, JavaScript, Notepad, and ChatGPT.
+
+Designed as an offline-only static web application.
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>LocalQuizEngine</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        #headerImage {
+            width: 128px;
+            height: 128px;
+        }
+
+        #headerTitle {
+            margin: 0;
+            font-size: 3rem;
+        }
+
+        textarea {
+            width: 600px;
+            max-width: 100%;
+            min-height: 100px;
+        }
+
+        input[type="text"] {
+            width: 600px;
+            max-width: 100%;
+        }
+
+        #startupScreen {
+            max-width: 900px;
+        }
+
+        #aboutScreen {
+            max-width: 1000px;
+        }
+
+        
+
+    </style>
+
+</head>
+<body>
+
+<div id="header">
+
+    <img
+        id="headerImage"
+        src="logo.png"
+        alt="LocalQuizEngine Logo">
+
+    <h1 id="headerTitle">
+        LocalQuizEngine
+    </h1>
+
+</div>
+
+<!-- STARTUP SCREEN -->
+
+<div id="startupScreen">
+
+    <h2>Welcome</h2>
+
+    <p>
+        LocalQuizEngine is an offline quiz creation and study tool.
+    </p>
+
+    <p>
+        This application is a static web application built with HTML, and JavaScript.
+        Despite being displayed in a web browser, it does not require an internet connection
+        and is designed to operate entirely offline.
+    </p>
+
+    <p>
+        LocalQuizEngine does not connect to servers, transmit data, collect analytics,
+        perform update checks, display advertisements, or use telemetry.
+    </p>
+
+    <p>
+        All quiz data remains on your device unless you choose to manually share exported quiz files.
+    </p>
+
+    <p>
+        Features include creating quizzes, loading quizzes, taking quizzes,
+        reviewing results, and importing or exporting quizzes as JSON files.
+    </p>
+
+    <button id="continueButton">
+        Continue
+    </button>
+
+</div>
+
+<!-- MAIN MENU -->
+
+<div id="mainMenu" hidden>
+
+    <button id="loadQuizMenuButton">
+        Load Quiz
+    </button>
+
+    <button id="createQuizMenuButton">
+        Create Quiz
+    </button>
+
+    <button id="editQuizMenuButton">
+        Edit Quiz
+    </button>
+
+    <button id="aboutMenuButton">
+        About
+    </button>
+
+</div>
+
+<!-- LOAD QUIZ -->
+
+<div id="loadScreen" hidden>
+
+    <h2>Load Quiz</h2>
+
+    <input type="file" id="quizFile" accept=".json">
+
+    <button id="loadButton">
+        Load Quiz
+    </button>
+
+    <button id="backToMenuFromLoad">
+        Back
+    </button>
+
+</div>
+
+<!-- EDIT QUIZ -->
+
+<div id="editScreen" hidden>
+
+    <h2>Edit Existing Quiz</h2>
+
+    <input
+        type="file"
+        id="editQuizFile"
+        accept=".json">
+
+    <button id="loadIntoEditorButton">
+        Load Into Editor
+    </button>
+
+    <button id="backToMenuFromEdit">
+        Back
+    </button>
+
+</div>
+
+<!-- QUIZ -->
+
+<div id="quizScreen" hidden>
+
+    <h2 id="quizTitle"></h2>
+
+    <p>
+        Question
+        <span id="questionNumber"></span>
+        of
+        <span id="questionTotal"></span>
+    </p>
+
+    <h3 id="questionText"></h3>
+
+    <div id="answers"></div>
+
+    <br>
+
+    <button id="previousButton">
+        Previous
+    </button>
+
+    <button id="nextButton">
+        Next
+    </button>
+
+    <button id="submitButton">
+        Submit Quiz
+    </button>
+
+</div>
+
+<!-- RESULTS -->
+
+<div id="resultsScreen" hidden>
+
+    <h2>Results</h2>
+
+    <p id="score"></p>
+
+    <div id="review"></div>
+
+</div>
+
+<!-- CREATOR -->
+
+<div id="creatorScreen" hidden>
+
+    <h2>Create Quiz</h2>
+
+    <p>Title</p>
+    <input id="creatorTitle">
+
+    <p>Description</p>
+    <textarea id="creatorDescription"></textarea>
+
+    <p>Author</p>
+    <input id="creatorAuthor">
+
+    <hr>
+
+    <div id="questionEditor"></div>
+
+    <button id="addQuestionButton">
+        Add Question
+    </button>
+
+    <button id="exportQuizButton">
+        Export Quiz
+    </button>
+
+    <button id="backToMenuFromCreator">
+        Back
+    </button>
+
+</div>
+
+<!-- ABOUT -->
+
+<div id="aboutScreen" hidden>
+
+    <h2>About LocalQuizEngine</h2>
+
+    <p>
+        LocalQuizEngine is an offline quiz creation and study tool designed to be simple, fast, and transparent.
+    </p>
+
+    <h3>What Is a Static Web Application?</h3>
+
+    <p>
+        LocalQuizEngine is a static web application. In practical terms, this means the application consists entirely
+        of local files that run inside your web browser.
+    </p>
+
+<pre>
+index.html
+creator.js
+quiz.js
+validator.js
+example-quiz.json
+</pre>
+
+    <p>
+        The browser loads the local files directly and executes the application entirely on your device.
+    </p>
+
+    <h3>Offline-Only Design</h3>
+
+    <p>
+        LocalQuizEngine is intentionally designed to operate completely offline. The app contains no designed mechanism for transmitting information. LocalQuizEngine...
+    </p>
+
+
+    <ul>
+        <li>Does not connect to the internet</li>
+        <li>Does not contact servers</li>
+        <li>Does not upload data</li>
+        <li>Does not download content</li>
+        <li>Does not check for updates</li>
+        <li>Does not display advertisements</li>
+        <li>Does not collect analytics</li>
+        <li>Does not use telemetry</li>
+        <li>Does not require accounts or sign-ins</li>
+    </ul>
+
+    <p>
+        No information is transmitted over a network by the application itself.
+    </p>
+
+    <p>
+        All quiz data remains on your device unless you deliberately export a quiz file and share it manually. 
+    </p>
+
+    <h3>Security and Privacy</h3>
+
+    <p>
+        Because LocalQuizEngine operates entirely offline, it runs in a highly isolated environment. Meaning the security boundary is no longer "Can the application be trusted?" but rather "Can the device and browser be trusted?".
+    </p>
+
+    <p>
+        The application does not depend on cloud services, online databases, user accounts, or remote servers.
+        As a result, there are no application-operated systems that can collect quiz data, usage information,
+        scores, or personal information.
+    </p>
+
+    <p>
+        While no software can guarantee absolute security, the offline-only design greatly reduces the attack
+        surface commonly associated with web services. There are no servers to compromise, no accounts to steal,
+        and no network communications generated by the application.
+    </p>
+
+    <p>
+        Any security considerations are generally limited to the device on which the application is running
+        and any files the user chooses to share manually.
+    </p>
+
+    <h3>Features</h3>
+
+    <ul>
+        <li>Create quizzes</li>
+        <li>Edit existing quizzes</li>
+        <li>Load quizzes</li>
+        <li>Take quizzes</li>
+        <li>Review results</li>
+        <li>Import quiz files</li>
+        <li>Export quiz files</li>
+    </ul>
+
+    <p>
+        Quiz files are stored in a human-readable JSON format that can be created either through the graphical
+        interface or by manually editing the file structure.
+    </p>
+
+    <h3>Design Goals</h3>
+
+    <ul>
+        <li>Offline-first operation</li>
+        <li>Simplicity</li>
+        <li>Transparency</li>
+        <li>Fast response times</li>
+        <li>Minimal resource usage</li>
+        <li>Human-readable data formats</li>
+    </ul>
+
+    <p>
+        The application avoids artificial delays, mandatory animations, loading screens for local operations,
+        and other interface behaviors that can make study tools feel slow or unresponsive.
+    </p>
+
+    <p>
+        User actions are designed to feel immediate and predictable.
+    </p>
+
+    <h3>Data Storage</h3>
+
+    <p>
+        LocalQuizEngine does not maintain cloud storage, user profiles, score history, or quiz history.
+    </p>
+
+    <p>
+        Quizzes exist as local JSON files that the user chooses to create, load, edit, export, and share.
+    </p>
+
+    <p>
+        The application does not automatically distribute, synchronize, back up, or transmit quiz data.
+    </p>
+
+    <h3>Credits</h3>
+
+    <p>
+        Application: LocalQuizEngine
+    </p>
+
+    <p>
+        Creator: daemon-forks
+    </p>
+
+    <p>
+        Developed using HTML, JavaScript, Notepad, and ChatGPT.
+    </p>
+
+    <p>
+        Version: 1.0
+    </p>
+
+    <button id="backToMenuFromAbout">
+        Back
+    </button>
+
+</div>
+
+<div id="footer">
+<br />
+<br />
+<hr>
+    LocalQuizEngine v1.0
+<hr>
+
+</div>
+
+<pre id="output"></pre>
+
+<script>
+
+document
+    .getElementById(
+        "continueButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "startupScreen"
+                )
+                .hidden = true;
+
+            document
+                .getElementById(
+                    "mainMenu"
+                )
+                .hidden = false;
+        }
+    );
+
+</script>
+
+<script src="js/validator.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/creator.js"></script>
+
+</body>
+</html>
