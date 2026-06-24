@@ -1,6 +1,6 @@
-LocalQuizEngine v1.0
-To run: Open index.html in a modern web browser.
-No installation required.
-No internet connection required.
-Quizzes are stored as JSON files.
-For details, see the About page inside the application.
+# LocalQuizEngine v1.0 <br>
+To run: Open index.html in a modern web browser. <br>
+- No installation required. <br>
+- No internet connection required. <br>
+Quizzes are stored as JSON files. <br>
+For details, see the About page inside the application. <br>
