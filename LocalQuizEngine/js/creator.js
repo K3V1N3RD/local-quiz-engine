@@ -350,7 +350,9 @@ function exportQuiz() {
         );
     validation = validateQuiz(quiz);
     if (!validation.valid){
-        proceed = window.confirm(validation.messages.concat("Invalid quiz. Select OK to proceed anyways, Cancel to keep editing").join("\n"));
+        proceed = window.confirm(
+            validation.messages.concat(
+                "Invalid quiz. Select OK to proceed anyways, Cancel to keep editing").join("\n"));
     }
         if (proceed){
             const url =
