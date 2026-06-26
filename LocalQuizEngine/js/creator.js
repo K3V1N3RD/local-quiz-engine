@@ -348,21 +348,29 @@ function exportQuiz() {
                     "application/json"
             }
         );
+    var shouldProceed = true;
+    validation = validateQuiz(quiz);
+    if (!validation.valid){
+        shouldProceed = window.confirm(
+            validation.messages.concat(
+                "Invalid quiz. Select OK to proceed anyways, Cancel to keep editing").join("\n"));
+    }
+        if (shouldProceed){
+            const url =
+                URL.createObjectURL(blob);
 
-    const url =
-        URL.createObjectURL(blob);
+            const link =
+                document.createElement("a");
 
-    const link =
-        document.createElement("a");
+            link.href = url;
 
-    link.href = url;
+            link.download =
+            "quiz.json";
 
-    link.download =
-        "quiz.json";
+            link.click();
 
-    link.click();
-
-    URL.revokeObjectURL(url);
+            URL.revokeObjectURL(url);
+        }
 }
 
 async function loadQuizIntoEditor() {
@@ -396,7 +404,6 @@ async function loadQuizIntoEditor() {
                 validation.messages.join("\n")
             );
 
-            return;
         }
 
         creatorTitle.value =
