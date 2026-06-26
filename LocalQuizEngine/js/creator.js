@@ -348,13 +348,14 @@ function exportQuiz() {
                     "application/json"
             }
         );
+    var shouldProceed = true;
     validation = validateQuiz(quiz);
     if (!validation.valid){
-        proceed = window.confirm(
+        shouldProceed = window.confirm(
             validation.messages.concat(
                 "Invalid quiz. Select OK to proceed anyways, Cancel to keep editing").join("\n"));
     }
-        if (proceed){
+        if (shouldProceed){
             const url =
                 URL.createObjectURL(blob);
 
